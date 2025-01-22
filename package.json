@@ -1,0 +1,12 @@
+{
+  "name": "cmark-frontend-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "python3 -m http.server",
+    "bumpCmark": "moon -C cmarkwrap build --release --no-strip --target=wasm-gc"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

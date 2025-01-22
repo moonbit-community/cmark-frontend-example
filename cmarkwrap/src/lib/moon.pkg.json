@@ -1,0 +1,15 @@
+{
+  "import": [
+    "rami3l/cmark/cmark_html"
+  ],
+  "link": {
+    "wasm-gc": {
+      "exports": [
+        "render",
+        "result_unwrap",
+        "result_is_ok"
+      ],
+      "use-js-builtin-string": true
+    }
+  }
+}
