@@ -7,6 +7,8 @@
     "dev": "python3 -m http.server",
     "bumpCmark": "moon -C cmarkwrap build --release --no-strip --target=wasm-gc"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "eslint": "^9.20.0",
+    "eslint-plugin-prettier": "^5.2.3"
+  }
 }

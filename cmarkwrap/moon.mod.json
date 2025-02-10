@@ -2,7 +2,7 @@
   "name": "username/hello",
   "version": "0.1.0",
   "deps": {
-    "rami3l/cmark": "0.2.2"
+    "rami3l/cmark": "0.2.3"
   },
   "readme": "README.md",
   "repository": "",

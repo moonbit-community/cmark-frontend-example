@@ -11,6 +11,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --max-width: 90%;
 }
 
 a {
@@ -25,9 +27,16 @@ a:hover {
 body {
   margin: 0;
   display: flex;
+  flex-direction: column;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+}
+
+nav {
+  padding-top: 1em;
+  font-size: 1.2em;
+  width: var(--max-width);
 }
 
 h1 {
@@ -78,7 +87,7 @@ select:focus-visible {
 }
 
 #app {
-  max-width: 90%;
+  max-width: var(--max-width);
   margin: 0 auto;
   padding: 2rem;
   text-align: left;

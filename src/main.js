@@ -16,10 +16,50 @@ function cmarkWASM(md) {
   return result_unwrap(res);
 }
 
-async function specHTML() {
-  const doc = await fetch("../public/tour.md");
-  const docText = await doc.text();
-  return cmarkWASM(docText);
+async function fetchDocText(path) {
+  const doc = await fetch(path);
+  return await doc.text();
 }
 
-document.getElementById("app").innerHTML = await specHTML();
+async function homeView() {
+  const docText = await fetchDocText("../public/tour.md");
+  return `<hr />` + cmarkWASM(docText);
+}
+
+async function profileView() {
+  const docText = await fetchDocText("../public/spec.md");
+  console.profile();
+  const res = cmarkWASM(docText);
+  console.profileEnd();
+  return (
+    `<h2>Note</h2>
+<p>
+  <strong
+    >Open your browser's
+    <a
+      href="https://developer.chrome.com/docs/devtools/performance"
+      rel="nofollow"
+      >Performance Tab</a
+    >
+    and refresh this page to see the CPU profile.</strong
+  >
+</p>` + res
+  );
+}
+
+async function onRouteChange() {
+  let view;
+  const location = window.location.hash.replace("#", "") ?? "/";
+  switch (location) {
+    case "profile":
+      view = await profileView();
+      break;
+    default:
+      view = await homeView();
+  }
+  document.getElementById("app").innerHTML = view;
+}
+
+window.addEventListener("hashchange", async () => await onRouteChange());
+
+onRouteChange();

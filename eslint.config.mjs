@@ -1,24 +1,16 @@
 import eslint from "@eslint/js";
-import perfectionist from "eslint-plugin-perfectionist";
+import globals from "globals";
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
-import eslintPluginVue from "eslint-plugin-vue";
-import tseslint from "typescript-eslint";
-import vueEslintParser from "vue-eslint-parser";
 
-export default tseslint.config(
+export default [
   { ignores: ["dist/*", "**/__snapshots__/*"] },
   eslint.configs.recommended,
-  tseslint.configs.recommended,
-  eslintPluginPrettierRecommended,
-  eslintPluginVue.configs["flat/essential"],
   {
-    files: ["**/*.vue"],
     languageOptions: {
-      parser: vueEslintParser,
-      parserOptions: {
-        parser: tseslint.parser, // parse TS inside VUE
+      globals: {
+        ...globals.browser,
       },
     },
   },
-  perfectionist.configs["recommended-natural"]
-);
+  eslintPluginPrettierRecommended,
+];
